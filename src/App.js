@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from "react-router-dom";
+import "./App.css";
+import App1 from "./subrepo1/src/App1";
+import { useEffect, useState } from 'react';
+
+async function setupRouter() {
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <App1 />,
+    },
+  ]);
+  return router;
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [router, setRouter] = useState(null);
+
+  useEffect(() => {
+    setupRouter().then(setRouter);
+  }, []);
+
+  return router ? <RouterProvider router={router} /> : <div>Loading...</div>;
 }
 
 export default App;
+

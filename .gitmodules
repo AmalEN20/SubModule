@@ -1,0 +1,3 @@
+[submodule "src/subrepo1"]
+	path = src/subrepo1
+	url = git@github.com:AmalEN20/subrepo1.git
